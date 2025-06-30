@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kunst im Bergwerk</title>
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="manifest.json" />
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
     }
   </script>
   <style>
@@ -79,8 +86,6 @@
     <nav>
       <ul>
         <li><a href="werke/werk1.html">Werk 1: "Licht und Schatten"</a></li>
-        <li><a href="werke/werk2.html">Werk 2: "Tiefe Struktur"</a></li>
-        <li><a href="werke/werk3.html">Werk 3: "Stille Resonanz"</a></li>
       </ul>
     </nav>
   </main>
